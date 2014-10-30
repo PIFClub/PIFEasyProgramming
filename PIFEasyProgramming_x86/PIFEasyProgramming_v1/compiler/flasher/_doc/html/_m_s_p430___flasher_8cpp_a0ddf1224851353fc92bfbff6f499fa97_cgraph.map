@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_m_s_p430___flasher_8cpp.html#a806ff4862042c0a5f9e651eaa2e8fc7b" title="Main Flasher routine." alt="" coords="139,259,205,285"/>
+<area shape="rect" id="node27" href="$_std_use_case_8h.html#a34aeae471ac0c9c966896d0387f16534" title="This function prints a soft copy of the command line arguments which can be passed to the Flasher..." alt="" coords="148,309,196,336"/>
+<area shape="rect" id="node29" href="$_std_use_case_8h.html#ac94aba39f0e1ab123437312a2288f154" title="This function prints a soft copy of the possible exit specification arguments for the &#45;z switch..." alt="" coords="127,360,217,387"/>
+<area shape="rect" id="node31" href="$_std_use_case_8cpp.html#a62cd59b5bab747a6574843a42e18e0d8" title="Trigger VCC on and/or apply hard reset via RST/NMI (if specified in sOpt) and disconnect from the dev..." alt="" coords="105,411,239,437"/>
+<area shape="rect" id="node5" href="$_std_use_case_8h.html#abb4df68ff78425cde9a243d2f48156f3" title="This function enables the logging feature unless it&#39;s disabled by the &#45;g switch." alt="" coords="347,5,429,32"/>
+<area shape="rect" id="node7" href="$_std_use_case_8h.html#a9fd19148dede26aff4dd411389ccbe87" title="This function prints the version of the Flasher executable." alt="" coords="341,56,435,83"/>
+<area shape="rect" id="node9" href="$_std_use_case_8h.html#a22d12bae49d2df5fcc730350cfb7e787" title="This function evaluates options from the argument string and configures the Flasher accordingly..." alt="" coords="330,107,446,133"/>
+<area shape="rect" id="node11" href="$_std_use_case_8cpp.html#acf8efd527ab1d58c719a331b813a984b" title="This function initializes the debug interface." alt="" coords="304,157,472,184"/>
+<area shape="rect" id="node13" href="$_std_use_case_8cpp.html#aea27f62bd8701ea4f72651acb0405154" title="This function checks whether the MSP430.dll version number and the version of the debugger firmware m..." alt="" coords="292,208,484,235"/>
+<area shape="rect" id="node15" href="$_std_use_case_8cpp.html#af9544f15f69155e4e57015d03da9dd30" title="This function reads out the debugger firmware version." alt="" coords="289,259,487,285"/>
+<area shape="rect" id="node17" href="$_std_use_case_8cpp.html#a2a68108478db7b89241ca1eb5d0014f4" title="This function reads out the debugger hardware version." alt="" coords="289,309,487,336"/>
+<area shape="rect" id="node19" href="$_std_use_case_8cpp.html#a00e89ae44a8b655b0d608064523a9e3d" title="This function sets the target voltage." alt="" coords="311,360,465,387"/>
+<area shape="rect" id="node21" href="$_std_use_case_8cpp.html#a380a381c74a6d26e6a033a280de4a5ea" title="Configure the device according to the chosen connection type." alt="" coords="310,411,466,437"/>
+<area shape="rect" id="node23" href="$_std_use_case_8cpp.html#af7637c8a22d6b7252d5d7d433398fce3" title="Access device and read device information." alt="" coords="307,461,469,488"/>
+<area shape="rect" id="node25" href="$_std_use_case_8cpp.html#a01ad9120a5921fefe1204f231ecceebd" title="Initialize the Enhanced Emulation Module (EEM)" alt="" coords="315,512,461,539"/>
+</map>

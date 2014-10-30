@@ -1,0 +1,34 @@
+Sun Sep 07 07:09:08 2014:	* -----/|-------------------------------------------------------------------- *
+Sun Sep 07 07:09:09 2014:	*     / |__                                                                   *
+Sun Sep 07 07:09:09 2014:	*    /_   /   MSP430 Flasher v1.3.2                                           *
+Sun Sep 07 07:09:09 2014:	*      | /                                                                    *
+Sun Sep 07 07:09:09 2014:	* -----|/-------------------------------------------------------------------- *
+Sun Sep 07 07:09:09 2014:	* Evaluating triggers...done
+Sun Sep 07 07:09:09 2014:	* Checking for available FET debuggers: 
+Sun Sep 07 07:09:09 2014:	* Couldn't find any connected USB FETs!
+Sun Sep 07 07:09:09 2014:	# Exit: 11
+Sun Sep 07 07:09:09 2014:	# MSP DebugStack not initialized
+Sun Sep 07 07:09:09 2014:	* Powering down...done
+Sun Sep 07 07:09:09 2014:	* Disconnecting from device...done
+Sun Sep 07 07:09:09 2014:	* 
+Sun Sep 07 07:09:09 2014:	* ----------------------------------------------------------------------------
+Sun Sep 07 07:09:09 2014:	* Driver      : closed (MSP DebugStack not initialized)
+Sun Sep 07 07:09:09 2014:	* ----------------------------------------------------------------------------
+Sun Sep 07 07:09:09 2014:	*/
+Sun Sep 07 07:09:36 2014:	* -----/|-------------------------------------------------------------------- *
+Sun Sep 07 07:09:36 2014:	*     / |__                                                                   *
+Sun Sep 07 07:09:36 2014:	*    /_   /   MSP430 Flasher v1.3.2                                           *
+Sun Sep 07 07:09:36 2014:	*      | /                                                                    *
+Sun Sep 07 07:09:36 2014:	* -----|/-------------------------------------------------------------------- *
+Sun Sep 07 07:09:36 2014:	* Evaluating triggers...done
+Sun Sep 07 07:09:36 2014:	* Checking for available FET debuggers: 
+Sun Sep 07 07:09:37 2014:	* Couldn't find any connected USB FETs!
+Sun Sep 07 07:09:37 2014:	# Exit: 11
+Sun Sep 07 07:09:37 2014:	# MSP DebugStack not initialized
+Sun Sep 07 07:09:37 2014:	* Powering down...done
+Sun Sep 07 07:09:37 2014:	* Disconnecting from device...done
+Sun Sep 07 07:09:37 2014:	* 
+Sun Sep 07 07:09:37 2014:	* ----------------------------------------------------------------------------
+Sun Sep 07 07:09:37 2014:	* Driver      : closed (MSP DebugStack not initialized)
+Sun Sep 07 07:09:37 2014:	* ----------------------------------------------------------------------------
+Sun Sep 07 07:09:37 2014:	*/

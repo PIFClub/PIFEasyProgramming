@@ -1,0 +1,357 @@
+This document describes the changes which may be needed to existing COFF ABI
+libraries and applications to be compatible with the new EABI released in the
+MSP430 Code Generation Tools version 4.0.0. This is not an overview of EABI;
+only those details needed for migration are described here.
+
+----------------------------------------------------------------------
+
+1. The MSP430 EABI
+
+2. The Most Common User EABI Migration Issues
+
+  2.1. Will COFF support be eliminated?
+
+3. Migration Strategies
+
+  3.1. Distribute Libraries in Both COFF and ELF Formats
+  3.2. Support Both COFF and ELF
+
+      3.2.1. Predefined Symbol: __TI_EABI__
+      3.2.2. Dealing With COFF-Only Object Libraries
+
+4. Assembly Code Changes (C and C++ ABI Changes)
+
+  4.1. C++ Name Mangling
+  4.2. Legacy .cinit in Assembly Source
+  4.3. Legacy STABS Directives in Assembly Source
+
+5. Linker Command File Changes
+
+  5.1. EABI Sections
+
+      5.1.1. Read-Only Sections
+
+  5.2. Conditional Linking Feature
+
+      5.2.1. The RETAIN pragma
+      5.2.2. The .retain assembler directive
+      5.2.3. The --retain linker option
+
+6. Miscellaneous
+
+  6.1. Relocation Expressions Are Not Supported
+  6.2. Partial Linking
+  6.3. --symdebug:coff and --symdebug:profile_coff Are Not Supported
+
+7. MSP430 EABI Sections
+
+----------------------------------------------------------------------
+
+1. The MSP430 EABI
+
+MSP430 code generation tools version 4.0.0 introduces support for a new
+ELF-based ABI to support new features such as shared object files; this new ELF
+ABI is referred to as the EABI. This document does not describe ELF or the
+MSP430 EABI, nor does it describe the new features available only in EABI. This
+document is focused on migration of COFF ABI applications to EABI and producing
+code which works equally well with both COFF ABI and EABI.
+
+The details of the MSP430 EABI can be found in The MSP430 Embedded Application
+Binary Interface Application Report (TBD).
+
+Documentation for features mentioned can be found in the MSP430 Optimizing C
+Compiler User's Guide (SLAU132, revision ? or later) and the MSP430 Assembly
+Language Tools User's Guide (SLAU131, revision ? or later).  
+
+----------------------------------------------------------------------
+
+2. The Most Common User EABI Migration Issues
+
+2.1. Will COFF support be eliminated?
+
+ELF and EABI will eventually completely displace COFF and COFF ABI; however,
+COFF will continue to be supported for some time. COFF ABI support will be
+phased out slowly.
+
+    * Most of the new compiler features will only be supported in EABI mode
+      going forward. Some features like the dynamic linking cannot be added to
+      COFF due to limitations in the COFF format.
+
+    * At some point in the future, new MSP430 family ISAs will only be
+      supported in EABI mode.
+
+    * Later, at a time chosen based on feedback from our customers, we will
+      completely stop supporting COFF ABI in new compiler releases. At this
+      point users will be required to use older versions of the compiler to
+      compile for COFF ABI.
+
+----------------------------------------------------------------------
+
+3. Migration Strategies
+
+Before beginning work to convert a COFF project to ELF, consider whether any
+EABI features are desired. A working COFF program need not be converted to ELF
+immediately unless ELF-only features are needed. COFF will continue to be
+supported for some time. We encourage our customers to migrate to EABI for
+systems that are actively being developed.
+
+Library code which will be reused in a later ELF project may need adjustments
+to work for both COFF and ELF.  
+
+3.1. Distribute Libraries in Both COFF and ELF Formats
+
+Library vendors are strongly encouraged to distribute both COFF and ELF
+versions of each library. For portably-written C code, the effort to support
+both COFF and ELF is minor, and for assembly code is typically a matter of
+renaming global symbols using conditional compilation.  
+
+3.2. Support Both COFF and ELF
+
+By using conditional compilation judiciously, it is easy to make code work with
+both COFF and ELF; however, two sets of object files will be necessary, as
+linking COFF and ELF object files together is not possible.
+
+3.2.1. Predefined Symbol: __TI_EABI__
+
+Both the compiler and assembler pre-define the symbol __TI_EABI__ to indicate
+that the source is being compiled under EABI. This option is defined when the
+--abi=eabi option is specified. Where the C code or assembly code cannot be
+written in a way that works for both COFF ABI and EABI, use this symbol to
+conditionally compile the appropriate version of the code.
+
+    #if defined(__TI_EABI__) 
+    static char abi[] = "EABI"; 
+    #else 
+    static char abi[] = "COFF ABI"; 
+    #endif 
+    printf("ABI used: %s\n", abi);
+
+3.2.2. Dealing With COFF-Only Object Libraries
+
+To convert an object file from COFF ABI to EABI, it is strongly recommended
+that you have access to at least the assembly code so that it can be
+appropriately modified and reassembled. If you do not have source code, such as
+the case when you only have an object library from a vendor, the best choices
+are to either leave the application as a COFF ABI application, or to request
+the vendor release an EABI version.
+
+There is no tool support for converting a COFF object file to an ELF object
+file; reverse-engineering the assembly code by using a disassembler is
+error-prone and could violate licensing agreements for some packages.
+
+----------------------------------------------------------------------
+
+4. Assembly Code Changes (C and C++ ABI Changes)
+
+The C ABI is how the compiler expresses C code programs in assembly
+language. Assembly code that defines a C-callable function or calls a C
+function must conform to the ABI. This section describes changes which must be
+made to assembly code due to the changes made by EABI to the way C and C++
+features are implemented in assembly code.
+
+The changes that will be necessary to existing assembly code are primarily
+limited to places where the assembly code interfaces with C or C++
+code. Assembly functions which do not interface with C or C++ code directly do
+not need to be changed.
+
+4.1. C++ Name Mangling
+
+The compiler uses name mangling to encode into the name of C++ functions the
+types of its parameters so that the linker can distinguish overloaded
+functions.
+
+COFF ABI and EABI use different name mangling schemes for C++ functions, so
+assembly code which refers to the mangled names directly will need to be
+changed to use the EABI mangling.
+
+    This is an example of difference in name mangling:
+
+	          int func(int);   int func(float);
+    COFF ABI	      func__Fi		func__Ff
+    EABI	      _Z4funci		_Z4funcf
+
+Direct references to mangled C++ names are unlikely unless the output assembly
+file from compiling a C++ file was captured and hand-modified. The best
+migration path is to just re-compile the original C++ file. If the
+hand-modifications are too extensive to do this, the fastest method to find the
+EABI mangled names is to re-compile the original C++ file and examine the
+generated assembly code to see the EABI mangled names.
+
+Pass the --abi=elfabi option to dem430 to demangle EABI C++ names. 
+
+4.2. Legacy .cinit in Assembly Source
+
+The COFF ABI uses the .cinit mechanism to initialize global variables. This is
+intended to be used only by the compiler, but some hand-coded assembly source
+encodes variable initialization with hand-encoded .cinit tables. This will work
+under COFF ABI as long as the encoding is correct. However, this method will
+not work in EABI, because it uses direct initialization instead, which means
+the linker creates all .cinit records.
+
+The recommended migration path is to rewrite the .cinit initialization as
+direct initialization and let the linker handle creating the initialization
+record. For example, the following .cinit record can be rewritten as shown:
+
+glob: .usect ".far", 8, 4 ; 8 byte object aligned to 4 bytes in uninitialized section ".far"
+      .sect ".cinit"
+      .align 8
+      .field 8, 32 ; length in bytes
+      .field glob, 32 ; address of memory to initialize
+      .field 2, 32 ; initialize first word to 2
+      .field 3, 32 ; initialize second word to 3
+
+      .sect ".fardata", RW ; 8 byte object in initialized section ".fardata"
+      .align 4
+glob: .field 2, 32 ; directly initialize first word to 2
+      .field 3, 32 ; directly initialize first word to 3
+
+For more information on using direct initialization, see the MSP430 Optimizing
+C Compiler Tools Users Guide.
+
+4.3. Legacy STABS Directives in Assembly Source
+
+Some COFF ABI assembly code can contain STABS (COFF debug) directives,
+particularly if the assembly code was originally generated by the compiler.
+
+ELF does not support STABS, and the assembler will give an error message if the
+input file contains STABS directives. To reuse the file for EABI, strip out all
+of the STABS directives.
+
+Example STABS directives: .file, .func, .block, .sym 
+
+----------------------------------------------------------------------
+
+5. Linker Command File Changes
+
+When porting a COFF ABI application to EABI, the most likely place the user will
+need to make a change is the linker command file. The linker supports linker
+command file preprocessing. See The MSP430 Assembly Language Tools User's
+Guide.  
+
+5.1. EABI Sections
+
+EABI re-uses most compiler-generated section names used by COFF ABI, and also
+introduces new section names. Each section needs to be allocated to appropriate
+memory. See below for all the sections generated by the toolset.
+
+5.1.1. Read-Only Sections
+
+EABI introduces the following read-only sections
+
+    * .init_array data, used to register C++ global variable constructors
+    * .mspabi.exidx data, index table for C++ exception handling
+    * .mspabi.extab data, unwinding instructions for C++ exception hand 
+
+The data section .init_array serves the same purpose .pinit does for COFF
+ABI. EABI does not use the name .pinit.  
+
+5.2. Conditional Linking Feature
+
+In COFF ABI mode, if an object file is explicitly included in the link step, or
+is pulled in from an object library to resolve a symbol definition, then, by
+default, the linker will include all of the sections in such an object file
+into the linked output file. This can be inefficient when a given object file
+contains many sections that are not needed in the link but are included anyway
+solely because one section in the file resolves a symbol.
+
+To alleviate this inefficiency in COFF, the Code Generation Tools have for a
+long time provided a .clink assembler directive which allows the compiler or a
+user to indicate that a section is eligible for removal by the linker if it is
+not referenced. This linker process is referred to as conditional linking. In
+COFF ABI the compiler generates .clink directive for code sections
+automatically. That is, for COFF, compiler generated code sections are eligible
+for removal via conditional linking. (The compiler generated data sections are
+always linked by the linker.)
+
+In EABI mode, all sections are eligible for removal via conditional linking by
+default. This means when migrating COFF ABI application to EABI, one must make
+sure that needed but unreferenced sections (such as overlays or debug
+functionality) are explicitly retained.
+
+To help developers with the transition of existing COFF applications to the
+EABI model and the creation of new applications, the CGT 4.0.0 release supports
+the following:
+
+5.2.1. The RETAIN pragma 
+
+The RETAIN pragma can be used in C/C++ source files
+
+    #pragma RETAIN(<symbol>)
+
+When this pragma is applied to a function or data object symbol, it instructs
+the compiler to generate a .retain assembler directive into the section that
+contains the definition of the symbol. This provides a mechanism for the
+developer to indicate in their C/C++ source that a section containing the
+specified symbol is to be considered ineligible for removal during conditional
+linking.
+
+NOTE: When compiling code for an interrupt function that is written in C/C++,
+the compiler will generate a .retain directive into the section that contains
+the definition of the interrupt function. This can be overridden by applying a
+#pragma CLINK() to the interrupt function symbol.
+
+5.2.2. The .retain assembler directive
+
+The .retain directive can be used in the assembly source files:
+
+    .retain ["<section name>"]
+
+If a "section name" argument is provided to the .retain directive, the
+assembler will mark the specified section as ineligible for removal by
+conditional linking. If no "section name" argument is specified, then the
+currently active initialized section is marked as ineligible for removal via
+conditional linking.
+
+5.2.3. The --retain linker option
+
+The linker option --retain can be used to specify a symbol or section to be
+retained by the linker.
+
+Note that the compiler automatically detects interrupt vectors in version
+4.0.0, and marks them ineligible for conditional linking to help users easily
+migrate from COFF ABI to EABI.
+
+----------------------------------------------------------------------
+
+6. Miscellaneous
+
+6.1. Relocation Expressions Are Not Supported
+
+Assembler expressions involving two or more relocatable symbols cannot be
+represented in MSP430 ELF object files. Any such expression will need to be
+rewritten into two or more instructions. The COFF ABI DP-relative idioms
+recognized by the assembler are the exceptions.
+
+For example, the following will not work if both symbols are resolved at link
+time:
+
+   thing_size: .word (thing_end - thing_begin)
+
+6.2. Partial Linking
+
+Relocation entries are not processed during a partial link under the
+EABI. Relocation entries involving a static base reference will simply be
+carried forward until the user is ready to create an executable output file
+with the linker. At that point, the linker will define a value for the
+__TI_STATIC_BASE symbol that is used in the resolution of any static-base
+relative relocation that is encountered.
+
+6.3. --symdebug:coff and --symdebug:profile_coff Are Not Supported
+
+These options request the use of STABS debugging information, which is
+available only for COFF files. ELF files must use DWARF as required by the ELF
+specification. If there are any STABS debug directives in an assembly file
+(this typically only happens for assembly code generated by the compiler),
+these directives must be deleted or conditionally compiled out; the assembler
+will reject these directives when assembling to an ELF file.
+
+----------------------------------------------------------------------
+
+7. MSP430 EABI Sections
+
+New MSP EABI sections:
+
+.init_array	C++ global object construtors
+<name>.load	Compressed image of section <name>
+.c6xabi.exidx	Index table for exception handling
+.c6xabi.extab	Unwinding encoding for exception handling

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_std_use_case_8cpp.html#ade1e7097132e0a190989a099e06b9e8a" title="Notify callback function for MSP430.dll PostMessages." alt="" coords="200,30,379,56"/>
+<area shape="rect" id="node5" href="$_std_use_case_8h.html#a46d8d3f398f950c6d4c29fccee1e7070" title="This function logs messages and prints them to the console." alt="" coords="917,55,1011,82"/>
+<area shape="rect" id="node10" href="$_std_use_case_8cpp.html#a3de96b4e9ced730e55bb023c754528ea" title="Exit the Flasher routine, close the logfile." alt="" coords="744,80,869,107"/>
+<area shape="rect" id="node7" href="$_std_use_case_8cpp.html#a401ecd4364d7f8f6f6458ac3714f4306" title="Read the state storage buffer." alt="" coords="427,30,695,56"/>
+</map>

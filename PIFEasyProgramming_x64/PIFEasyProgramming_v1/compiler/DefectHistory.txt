@@ -1,0 +1,894 @@
+MSP430 Code Generation Tools Release Version 4.2.1
+Defect History
+July 2013 
+
+------------------------------------------------------------------------------
+Table of Contents
+------------------------------------------------------------------------------
+1. 4.2.1   Fixed Defects
+2. 4.2.0   Fixed Defects
+3. 4.2.0B2 Fixed Defects
+4. 4.2.0B1 Fixed Defects
+5. Current Known Issues
+
+
+
+
+------------------------------------------------------------------------------
+1. 4.2.1   Fixed Defects
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00013456
+------------------------------------------------------------------------------
+
+Summary            : fgets in _IONBF mode does not respect size limit
+
+Fixed in           : 4.2.1
+Severity           : S2 - Major
+Affected Component : Runtime Support Libraries (RTS)
+
+Description: 
+The second argument to fgets() is the maximum number of chars to read.
+In _IONBF mode, fgets() reads until end-of-line, potentially
+overrunning the input buffer. For example
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
+
+main()
+{
+    FILE *f = fopen("tst.txt", "r");
+    char buffer[100];
+    int counter = 0;
+
+    setvbuf(f, NULL, _IONBF, 0);
+
+    while (fgets(buffer, 5, f) != NULL)
+    {
+	printf("[%s]\n", buffer);
+	switch (counter++)
+	{
+	    case 0 assert(!strcmp(buffer, "aaaa")); break;
+	    case 1 assert(!strcmp(buffer, "bbbb")); break;
+	    case 2 assert(!strcmp(buffer, "cccc")); break;
+	}
+    }
+
+    assert(feof(f));
+
+    puts("PASS");
+}
+
+With tst.txt having (with no trailing newline)
+aaaabbbbcccc
+
+Defect occurs in
+
+MSP430 Compiler versions 1.0.0B1 - 1.0.1, 2.0.0B1 - 2.0.2, 3.0.0B1 -
+3.0.1, 3.1.0B1 - 3.1.0, 3.2.0B1 - 3.2.3, 3.3.0B1 - 3.3.3, 4.0.0B1 -
+4.0.2, 4.1.0B1 - 4.1.6, 4.2.0B1 - 4.2.0
+
+
+Workaround: 
+Do not use _IONBF mode
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00047286
+------------------------------------------------------------------------------
+
+Summary            : Compiler does not generate correct dwarf debug info
+		     for symbol with pragma location
+
+Fixed in           : 4.2.1
+Severity           : S2 - Major
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+If #pragma location was used to specify the address of a variable, then
+the DWARF debug information would contain an incorrect address.  The 
+variable is placed at the specified location, but the DWARF information
+for the variable would show a location that was twice the specified 
+address.  The resulting code would execute correctly, but debugging was
+impaired.
+
+Defect occurs in
+
+MSP430 Compiler versions 4.0.0B1 - 4.0.2, 4.1.0B1 - 4.1.6, 4.2.0B1 -
+4.2.0
+
+
+Workaround: 
+None.
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00047441
+------------------------------------------------------------------------------
+
+Summary            : Internal optimizer abnormal termination error in find_label
+
+Fixed in           : 4.2.1
+Severity           : S2 - Major
+Affected Component : Optimizer
+
+Description: 
+A single function containing more than 32,000 labels is likely to cause
+the optimizer to crash.
+
+Defect occurs in
+
+MSP430 Compiler versions 2.0.0B1 - 2.0.2, 3.0.0B1 - 3.0.1, 3.1.0B1 -
+3.1.0, 3.2.0B1 - 3.2.3, 3.3.0B1 - 3.3.3, 4.0.0B1 - 4.0.2, 4.1.0B1 -
+4.1.6, 4.2.0B1 - 4.2.0
+
+
+Workaround: 
+None.  The test case exceeds the limits of the optimiser.
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00047709
+------------------------------------------------------------------------------
+
+Summary            : Compiler Optimization settings prevent linking of project
+
+Fixed in           : 4.2.1
+Severity           : S2 - Major
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+An assembler error gets emitted due to the .compiler_opts directive
+exceeding the buffer size. The primary reason this happens is because
+duplicate options are placed in the .compiler_opts directive.
+
+
+Workaround: 
+None
+
+
+------------------------------------------------------------------------------
+2. 4.2.0   Fixed Defects
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00008276
+------------------------------------------------------------------------------
+
+Summary            : Linker accepts illegal address ranges and truncates to a
+		     valid address
+
+Fixed in           : 4.2.0
+Severity           : S3 - Minor
+Affected Component : Linker
+
+Description: 
+The linker will now generate an out of range error
+
+<Linking>
+"./test.cmd", line 4 error integer constant does not fit within 32-bits
+   "0x123456789"
+error errors encountered during linking; "test.out" not built
+
+
+
+
+------------------------------------------------------------------------------
+3. 4.2.0B2 Fixed Defects
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00043337
+------------------------------------------------------------------------------
+
+Summary            : Device runs into watchdog when initializing large memory
+
+Fixed in           : 4.2.0B2
+Severity           : S2 - Major
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+New linker option, --cinit_hold_wdt=on,off, can be used to select 
+auto-initialization with or without a hold on the watchdog timer during 
+the cinit portion of auto-initialization.
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00045173
+------------------------------------------------------------------------------
+
+Summary            : Missing qsort and bsearch implementations for comparison
+		     functions with C++ linkage
+
+Fixed in           : 4.2.0B2
+Severity           : S2 - Major
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+The C++ standard requires two distinct prototypes for qsort, one for 
+comparison functions with C linkage, and one for comparison functions 
+with C++ linkage.  The C++ linkage implementation was missing, which 
+would lead to an incompatible parameter error when trying to use qsort
+in C++ with a comparison function that has C++ linkage.
+
+Defect occurs in:
+MSP430 Compiler versions 2.0.0B1 - 2.0.2, 3.0.0B1 - 3.0.1, 3.1.0B1 -
+3.1.0, 3.2.0B1 - 3.2.3, 3.3.0B1 - 3.3.3, 4.0.0B1 - 4.0.2, 4.1.0B1 -
+4.1.5, 4.2.0B1
+
+Workaround: 
+Declare the comparison function extern "C"
+
+
+
+
+
+------------------------------------------------------------------------------
+4. 4.2.0B1 Fixed Defects
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+FIXED  SDSCM00043978
+------------------------------------------------------------------------------
+
+Summary            : MSP430 Assembly file examples do not link in ELF (generates
+		     an error regarding the entry point)
+
+Fixed in           : 4.2.0B1
+Severity           : S2 - Major
+Affected Component : Linker
+
+
+
+
+
+
+------------------------------------------------------------------------------
+5. Current Known Issues
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008248
+------------------------------------------------------------------------------
+
+Summary: Compilers on PC will not work without TMP set
+
+Description: 
+
+When compiling on the PC, the code generator cannot find the icode 
+file produced by the parser if the environment variable TMP is no 
+set.  If TMP is set, then all appears well.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008251
+------------------------------------------------------------------------------
+
+Summary: Printf format '%#04x' fills zeros into wrong location
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008340
+------------------------------------------------------------------------------
+
+Summary: directory name with '(' character causes linker error
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008380
+------------------------------------------------------------------------------
+
+Summary: Linker corrupts DWARF information when c-linking partially linked
+         files
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008406
+------------------------------------------------------------------------------
+
+Summary: Virtual Inheritance information incorrect for DWARF
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008413
+------------------------------------------------------------------------------
+
+Summary: Static data members missing DW_AT_specification attribute in DWARF
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008414
+------------------------------------------------------------------------------
+
+Summary: DWARF does not model nested types correctly
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008465
+------------------------------------------------------------------------------
+
+Summary: Codegen crash because of void pointer dereference
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008466
+------------------------------------------------------------------------------
+
+Summary: DWARF problem static variables not placed in the right lexical block
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008467
+------------------------------------------------------------------------------
+
+Summary: TI DWARF bug struct parameters are marked as pointers
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008537
+------------------------------------------------------------------------------
+
+Summary: assembler expression ~(0x80000000) evaulates as 0x80000000
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008543
+------------------------------------------------------------------------------
+
+Summary: Forward reference in .space generates an internal error
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008630
+------------------------------------------------------------------------------
+
+Summary            : printf gives wrong value for pointer when its value is
+		     incremented
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008652
+------------------------------------------------------------------------------
+
+Summary: pow(2,x) has fairly significant rounding error
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008685
+------------------------------------------------------------------------------
+
+Summary: DWARF does not correctly represent variables stored in register pairs
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008690
+------------------------------------------------------------------------------
+
+Summary: STABS variables declared in loop bodies are promoted to function
+         scope
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008928
+------------------------------------------------------------------------------
+
+Summary: Extern inline functions are not supported
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00008930
+------------------------------------------------------------------------------
+
+Summary: C++ allows enumerators larger than 'int' but C6x Compiler does not
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00014430
+------------------------------------------------------------------------------
+
+Summary: calloc doesn't check arguments to make sure the requested size is
+         reasonable
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00016782
+------------------------------------------------------------------------------
+
+Summary: linker is giving a reference error for a dead function
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00018691
+------------------------------------------------------------------------------
+
+Summary: Linker gives misleading warning when dot expressions used in SECTION
+         directive for .stack section
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00023532
+------------------------------------------------------------------------------
+
+Summary: C++ Perennial test cases cause PC optimizer to hang (or at a minimum
+             executes for hours before exiting)
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00030125
+------------------------------------------------------------------------------
+
+Summary: Linker generates confusing error message and fails
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00035379
+------------------------------------------------------------------------------
+
+Summary: C++ requires overloaded abs() and div() in stdlib.h
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00036146
+------------------------------------------------------------------------------
+
+Summary: During -O4, the compiler creates the .cl file in the current
+         directory instead of as a temp file
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00036474
+------------------------------------------------------------------------------
+
+Summary: DWARF .debug_info section has multiple instances of the same string
+         even after --compress_dwarf is used.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00036663
+------------------------------------------------------------------------------
+
+Summary: Incorrectly performing function specialization with -o4
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00037170
+------------------------------------------------------------------------------
+
+Summary: Embed does not handle cross-filesystem rename correctly
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00037328
+------------------------------------------------------------------------------
+
+Summary: _c_int00_*mpu_init functions should be in ".text_isr"
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00038385
+------------------------------------------------------------------------------
+
+Summary: Defaulting to automatic RTS library selection causes linker to not
+         recognize rts library specified in linker command file
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00039675
+------------------------------------------------------------------------------
+
+Summary: MSP430 assembler problem with PC relative addressing in pseudo
+         instructions
+
+Description: When there are two PC-relative operands in the same instructions,
+             one of the PC offsets may not be encoded correctly.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00040650
+------------------------------------------------------------------------------
+
+Summary: If specifying 400 or more to precision of output format specifier, it
+         is shut down incorrectly.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00040658
+------------------------------------------------------------------------------
+
+Summary: The assignment of value using pointer for the method of "static"
+         struct or union is not done correctly.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00040665
+------------------------------------------------------------------------------
+
+Summary: Internal Compiler Error
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00040934
+------------------------------------------------------------------------------
+
+Summary: Structure is not initialized correctly when using -o2 or -o3
+         optimization
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00042327
+------------------------------------------------------------------------------
+
+Summary            : Compiler reports incorrect violation of Misra 10.1
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00042328
+------------------------------------------------------------------------------
+
+Summary            : Compiler reports incorrect violation of Misra 6.1
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00042344
+------------------------------------------------------------------------------
+
+Summary            :  Compiler sometimes generates internal error: illegal 
+                      initialization or segmentation fault when using gcc 
+                      extension nested designed initializers.
+
+Work around:
+The seg fault can be worked around if the nested designated initializer is 
+removed.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00042444
+------------------------------------------------------------------------------
+
+Summary            : Expression that multiplies two constants incorrectly
+		     triggers MISRA rule 10.1 about implicit conversion
+
+Description: 
+The expression ...
+   var_int16 = 4 * 256;
+contains no implicit conversions.  However, MISRA rule 10.1 about no
+implicit conversions is still emitted for that expression.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00042600
+------------------------------------------------------------------------------
+
+Summary            : Ill advised enum scalar usage gets MISRA diagnostic, but
+		     similar usage of enum array does not
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00042839
+------------------------------------------------------------------------------
+
+Summary            : Update linker command files shipped with product to
+		     allocate .data
+Affected Component : Runtime Support Libraries (RTS)
+
+Description: 
+EABI changes the set of data sections generated by the compiler.  All linker 
+command files need to be updated to allocate .data
+
+Otherwise, you get:
+    warning: creating output section ".data" without a SECTIONS specification
+
+.data is not a new section.  It is the usual section for data in hand-code 
+assembly.  However, the MSP compiler will never generate a use of the .data 
+section in COFF ABI (unless the user explicitly uses DATA_SECTION).  Thus, the 
+linker command file should be prepared to place .data even for COFF ABI.
+
+Here is the list of target content sections that are generated by the MSP 
+compiler for EABI mode but not COFF ABI mode:
+        .data (read/write data)
+        .mspabi.exidx (read-only metadata)
+        .mspabi.extab (read-only metadata)
+        .init_array (new name for .pinit, which is read-only data)
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00043485
+------------------------------------------------------------------------------
+
+Summary            : ULP advisor check for rule #1 limited to last .c file in
+		     list when using --program_level_compile
+Affected Component : C/C++ Compiler (cl)
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00043605
+------------------------------------------------------------------------------
+
+Summary            : Linker segfaults linking partially linked file when partial
+		     link includes RTS library, ELF, and exceptions
+Affected Component : ELF Linker
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00043917
+------------------------------------------------------------------------------
+
+Summary            : Images not displayed when no Internet connection when using
+		     ULP Advisor
+Affected Component : Linker
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00043998
+------------------------------------------------------------------------------
+
+Summary            : The compiler option setting for Function Subsections
+		     displays an empty drop-down list
+Affected Component : C/C++ Compiler (cl)
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00044056
+------------------------------------------------------------------------------
+
+Summary            : Compiler misreports Misra warning 10.1
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+Compiler misreports MISRA warning 10.1/R for the following code.
+
+typedef enum _MyEnum { One, Two } MyEnum;  
+MyEnum MyVariable;     
+
+int foo(void)  
+{      
+	int result = 1; 	
+	if (One == MyVariable)	// fails here with MISRA-C2004 10.1/R  
+   
+	{	   result = 2;	    }	       
+	return result;	
+} 
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00044121
+------------------------------------------------------------------------------
+
+Summary            : Linker option --retain is not displayed in CCS GUI or when
+		     typing cl430 --help
+Affected Component : ELF Linker
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00044163
+------------------------------------------------------------------------------
+
+Summary            : TI MSP430 compiler generates invalid local variable
+		     location debug info when optimization is turned on.
+Affected Component : C/C++ Compiler (cl)
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00044286
+------------------------------------------------------------------------------
+
+Summary            : Linker cannot extract a subsection from a library module
+Affected Component : Linker
+
+Description: 
+The user supplies an implementation of putchar.  The function fputc is
+also called.  Upon linking, this error message is observed
+
+error symbol "putchar" redefined first defined in "try1.obj"; redefined
+in
+   "C\Program Files\Texas
+Instruments\ccs5_2\ccsv5\tools\compiler\msp430\lib\rts430.lib<fputc.obj
+>"
+
+Both putchar and fputc are defined in the RTS library module fputc.obj.
+ But they are each in their own subsection.  
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00044836
+------------------------------------------------------------------------------
+
+Summary            : Prototypes for certain intrinsics are missing from the
+		     intrinsics.h file
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+Looking at the intrinsics.h header file, it is missing prototype
+information for following intrinsic functions
+
+•_no_operation()
+•_data16_read_addr()
+•_data16_write_addr()
+
+To meet good C programming style, each function should have its own
+prototypes. Indeed the code compiles without errors, because these are
+all intrinsic functions. But they still lack the necessary information
+to the prototype.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00045417
+------------------------------------------------------------------------------
+
+Summary            : bool and _Bool are not defined correctly
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+The C++ type "bool" and the C99 type "_Bool" should have the same type,
+but in the TI toolset they have different sizes, which means that C++
+modules which use "bool" are not compatible with C modules which
+include stdbool.h and use "bool".
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00045452
+------------------------------------------------------------------------------
+
+Summary            : Compiler misreports MISRA warning 17.6
+Affected Component : C/C++ Compiler (cl)
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00045473
+------------------------------------------------------------------------------
+
+Summary            : Compiler misreports violation of Misra 9.2 for zero
+		     initialization of structures
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+Compiler misreports violation of Misra 9.2 for zero initialization of
+structures.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00045480
+------------------------------------------------------------------------------
+
+Summary            : Designated initializer with anonymous struct causes
+		     internal error
+Affected Component : Parser
+
+Description: 
+An attempt to use a designated initializer for a structure member which
+is an anonymous union leads to an internal error.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00045550
+------------------------------------------------------------------------------
+
+Summary            : Compiler generates incorrect code with -o3/-o4 and
+		     --opt_for_speed=4
+Affected Component : Optimizer
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00045923
+------------------------------------------------------------------------------
+
+Summary            : Compiling with --small_enum and -o4 (linktime optimization)
+		     results in errors about incompatible --enum_type settings
+Affected Component : COFF Linker
+
+Description: 
+Compiling with --small_enum and -o4 (linktime optimization) results in
+errors about incompatible --enum_type settings that come from files in
+the runtime library. 
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00046077
+------------------------------------------------------------------------------
+
+Summary            : .space Directive causes internal compiler error /
+		     segmentation fault
+Affected Component : C/C++ Compiler (cl)
+
+Description:
+Compiling an assembly CCS project causes the following error: 
+
+INTERNAL ERROR: C:\ti\CCSv5.3.0\ccsv5\tools\compiler\msp430_4.1.3\bin\asm430.exe experienced a segmentation fault while processing section .text file 
+../main.asm line 23 
+
+The line in question is the following: 
+            .space  2*73-(ROMMANBEG - ROMMANEND)
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00046083
+------------------------------------------------------------------------------
+
+Summary            : Should exit with non-zero status for "no source files"
+Affected Component : Shell
+
+Description: 
+For all error cases, including "no source files", the shell should have
+a non-zero exit status.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00046115
+------------------------------------------------------------------------------
+
+Summary            : MSP430 RTS float arithmetic functions do not round
+		     correctly
+Affected Component : Runtime Support Libraries (RTS)
+
+Description: 
+The expression 1+DBL_EPSILON/2 should be rounded DOWN to 1.0 for only
+mode the TI compiler supports "round to even"
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00046847
+------------------------------------------------------------------------------
+
+Summary            : WEOF macro needs to be usable without using namespace std
+		     for wint_t
+Affected Component : Runtime Support Libraries (RTS)
+
+Description: 
+The following should compile without error
+
+#include <cwchar>
+
+stdwint_t func()
+{
+    return WEOF;
+}
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00046348
+------------------------------------------------------------------------------
+
+Summary            : Diagnostic options are sometimes ignored during linker
+		     command file processing
+Affected Component : Shell
+
+Description: 
+The shell places some options before the linker command file in the
+command line passed to the elf linker.	The fix for SDSCM00043054
+placed the --display_error_number option prior to the LCF so that error
+numbers could be displayed by CCS.  That code change also attempted to
+place the --diag_warning, --diag_remark and --diag_suppress options
+prior to the LCF for consistency.  However, that part of the code is
+incorrect because those options can be invoked multiple times and only
+one instance of each option will be properly placed.
+
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00046936
+------------------------------------------------------------------------------
+
+Summary            : Hex utility incorrectly skips over a section with a
+		     duplicate name
+Affected Component : Hex Converter (hex)
+
+Description: 
+There can be duplicate section names in an ELF file (and possibly a
+COFF file).  The hex converter uses the section name as if it were a
+unique key when looking up the section in the section table.  For
+duplicate section names, it will emit a warning and fail to convert the
+section.  This was originally reported as SDSCM00046084, but that
+defect has been re-purposed as a more targeted fix that will handle the
+user's original test case; the fix for SDSCM00046084 is to ignore
+zero-length sections.  Handling duplicate section names, neither of
+which are empty, will require some redesign, and we want to make that a
+separate effort.
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00046953
+------------------------------------------------------------------------------
+
+Summary            : --strict ANSI mode bug with identifiers _near and _far
+Affected Component : Parser
+
+Description: 
+Even with strict ansi mode enabled, parser is not handling identifier
+names _near and _far properly.
+
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00047272
+------------------------------------------------------------------------------
+
+Summary            : Compiler optimization issue 
+Affected Component : C/C++ Compiler (cl)
+
+Description: 
+The MSP432 compiler has an issue about
+optimization level.
+
+For the following code
+
+bool EDMA_enableChannel (uint16_t channelSelect)
+{
+     HWREG32(EDMA_BASE + channelSelect + OFS_EDMA0CTL) |= EDMADMAENS;
+}
+
+EDMA_BASE is 0x10001C00, channelSelect is 0x0, OFS_EDMA0CTL is 0x44,
+and EDMADMAENS is 0x10000.
+
+For the non optimization assembly code, it is working and edma channel
+is enabled
+fffe09f4   0000 	  MOV.L   #0,R15
+fffe09f8   1C00 1000	  MOV.L   #268442624,@R15
+fffe09fe		  LOAD.L  @R15,R15
+fffe0a00		  ADD.L   R12,R15
+fffe0a02   0E1F 0044 0000 BIS.L   #65536,68(R15)
+
+For the O2/O3 optimization assembly code, it doesn't work and edma
+channel is not enabled
+fffe09cc   0000 	  MOV.L   #0,R15
+fffe09d0   1C00 1000	  MOV.L   #268442624,@R15
+fffe09d6   0E1C 1C44 0000 BIS.L   #65536,7236(R12)
+
+R12 is 0 which comes from argument1. 
+
+
+------------------------------------------------------------------------------
+KNOWN ISSUE  SDSCM00047783
+------------------------------------------------------------------------------
+
+Summary            : Compiler should not expand ABS to a call to llabs inside
+		     llabs
+Affected Component : Code Generator
+
+Description: 
+When using optimization, the optimizer recognizes certain idioms as
+ABS.  If this idiom is used to define the body of the llabs function
+itself, the compiler will not be able to match ABS directly (there is
+no 64-bit ABS instruction on C6000) and will instead emit a call to
+llabs, which will result in an infinite loop.  ACTUALLY, there is code
+in the C6000 decomp to detect this very situation, but it fails to
+detect llabs when in EABI mode.  This should actually be GENERIC
+decomp, and should check for each of abs, labs, and llabs.  In fact,
+several other targets stumble on this same problem.
+
