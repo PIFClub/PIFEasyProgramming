@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_INJBkUGvEeSuZN0PotMrOQ" elementId="test.rcp.application" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_INJooEGvEeSuZN0PotMrOQ" bindingContexts="_INK2wkGvEeSuZN0PotMrOQ">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;g.block&quot; tooltip=&quot;test/g.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/test/g.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;pif.block&quot; tooltip=&quot;bkpro/pif.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/bkpro/pif.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;beep.block&quot; tooltip=&quot;bkpro/beep.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/bkpro/beep.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;subfunction1.block&quot; tooltip=&quot;bkpro/subfunction1.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/bkpro/subfunction1.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;TimerIntHandler1.block&quot; tooltip=&quot;bkpro/TimerIntHandler1.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/bkpro/TimerIntHandler1.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;config1.block&quot; tooltip=&quot;bkpro/config1.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/bkpro/config1.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;config1.block&quot; tooltip=&quot;test/config1.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/test/config1.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;g.block&quot; tooltip=&quot;test/g.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/test/g.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;config1.block&quot; tooltip=&quot;testMotor/config1.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/testMotor/config1.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;TimerIntHandler1.block&quot; tooltip=&quot;test/TimerIntHandler1.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/test/TimerIntHandler1.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;main.block&quot; tooltip=&quot;testMotor/main.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/testMotor/main.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot; name=&quot;LineFollower.block&quot; tooltip=&quot;LineFollower/LineFollower.block&quot;>&#xD;&#xA;&lt;persistable path=&quot;/LineFollower/LineFollower.block&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_INJooEGvEeSuZN0PotMrOQ" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_INJooUGvEeSuZN0PotMrOQ" label="My Main Window" iconURI="" x="50" y="50" width="800" height="600">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_INJooEGvEeSuZN0PotMrOQ" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_INJooUGvEeSuZN0PotMrOQ" label="My Main Window" iconURI="" x="0" y="0" width="800" height="600">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workingSets/>"/>
@@ -14,15 +14,15 @@
       <children xsi:type="advanced:Perspective" xmi:id="_INJookGvEeSuZN0PotMrOQ" elementId="test.rcp.perspective" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_INJoo0GvEeSuZN0PotMrOQ" label="My Perspective" iconURI="">
         <tags>Perspective</tags>
         <tags>categoryTag:General</tags>
-        <children xsi:type="basic:PartSashContainer" xmi:id="_INJoo0GvEeSuZN0PotMrOQ" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_INJopkGvEeSuZN0PotMrOQ" horizontal="true">
-          <children xsi:type="basic:PartStack" xmi:id="_INJopEGvEeSuZN0PotMrOQ" elementId="PartStack@7e76b2bd" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="3400" selectedElement="_INJopUGvEeSuZN0PotMrOQ">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_INJoo0GvEeSuZN0PotMrOQ" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_INJopEGvEeSuZN0PotMrOQ" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_INJopEGvEeSuZN0PotMrOQ" elementId="PartStack@7e76b2bd" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="2345" selectedElement="_INJopUGvEeSuZN0PotMrOQ">
             <tags>newtablook</tags>
             <tags>org.eclipse.e4.primaryNavigationStack</tags>
             <children xsi:type="advanced:Placeholder" xmi:id="_INJopUGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributorURI="platform:/plugin/VisualProgrammingLanguage" ref="_INKPtkGvEeSuZN0PotMrOQ"/>
           </children>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_INJopkGvEeSuZN0PotMrOQ" elementId="" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="10000" selectedElement="_INJop0GvEeSuZN0PotMrOQ">
-            <children xsi:type="advanced:Placeholder" xmi:id="_INJop0GvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.editorss" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="20000" ref="_INKPsUGvEeSuZN0PotMrOQ"/>
-            <children xsi:type="basic:PartStack" xmi:id="_INJoqEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.views.PropertySheetMStack" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="3400" selectedElement="_INKPsEGvEeSuZN0PotMrOQ">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_INJopkGvEeSuZN0PotMrOQ" elementId="" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="11055" selectedElement="_INJop0GvEeSuZN0PotMrOQ">
+            <children xsi:type="advanced:Placeholder" xmi:id="_INJop0GvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.editorss" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="18780" ref="_INKPsUGvEeSuZN0PotMrOQ"/>
+            <children xsi:type="basic:PartStack" xmi:id="_INJoqEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.views.PropertySheetMStack" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="4620" selectedElement="_INKPsEGvEeSuZN0PotMrOQ">
               <tags>newtablook</tags>
               <tags>org.eclipse.e4.secondaryDataStack</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_INKPsEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.views.PropertySheet" contributorURI="platform:/plugin/VisualProgrammingLanguage" containerData="8000" ref="_INKPs0GvEeSuZN0PotMrOQ"/>
@@ -32,16 +32,33 @@
       </children>
     </children>
     <sharedElements xsi:type="advanced:Area" xmi:id="_INKPsUGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.editorss" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_INKPskGvEeSuZN0PotMrOQ">
-      <children xsi:type="basic:PartStack" xmi:id="_INKPskGvEeSuZN0PotMrOQ" elementId="org.eclipse.e4.primaryDataStack" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_LsPlsEGvEeSuZN0PotMrOQ">
+      <children xsi:type="basic:PartStack" xmi:id="_INKPskGvEeSuZN0PotMrOQ" elementId="org.eclipse.e4.primaryDataStack" contributorURI="platform:/plugin/VisualProgrammingLanguage" selectedElement="_OBa4IFxFEeWiXvxmeyKmQA">
         <tags>newtablook</tags>
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
-        <children xsi:type="basic:Part" xmi:id="_LsPlsEGvEeSuZN0PotMrOQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Block Editor" tooltip="test/g.block" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/test/g.block&quot;/>&#xD;&#xA;&lt;/editor>"/>
+        <children xsi:type="basic:Part" xmi:id="_OBa4IFxFEeWiXvxmeyKmQA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="pif.block" tooltip="bkpro/pif.block" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/bkpro/pif.block&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>VisualProgrammingLanguage.editor.BlockEditor</tags>
           <tags>removeOnHide</tags>
-          <tags>activeOnClose</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_acAwkFxFEeWiXvxmeyKmQA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="config1.block" tooltip="bkpro/config1.block" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/bkpro/config1.block&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>VisualProgrammingLanguage.editor.BlockEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_jc4UIFxFEeWiXvxmeyKmQA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="TimerIntHandler1.block" tooltip="bkpro/TimerIntHandler1.block" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/bkpro/TimerIntHandler1.block&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>VisualProgrammingLanguage.editor.BlockEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_lc5uUFxJEeWiXvxmeyKmQA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="beep.block" tooltip="bkpro/beep.block" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;VisualProgrammingLanguage.editor.BlockEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/bkpro/beep.block&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>VisualProgrammingLanguage.editor.BlockEditor</tags>
+          <tags>removeOnHide</tags>
         </children>
       </children>
     </sharedElements>
@@ -59,6 +76,7 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;/>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+      <tags>activeOnClose</tags>
       <menus xmi:id="_INKPt0GvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributorURI="platform:/plugin/VisualProgrammingLanguage">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -95,8 +113,16 @@
       <children xsi:type="menu:ToolControl" xmi:id="_INKPvUGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.HeapStatus" contributorURI="platform:/plugin/VisualProgrammingLanguage" toBeRendered="false" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.StandardTrim"/>
       <children xsi:type="menu:ToolControl" xmi:id="_INK2wEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.ProgressBar" contributorURI="platform:/plugin/VisualProgrammingLanguage" toBeRendered="false" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.StandardTrim"/>
     </trimBars>
-    <trimBars xmi:id="_Ig2AsEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.trim.vertical1" side="Left"/>
-    <trimBars xmi:id="_Ig5rEEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.trim.vertical2" side="Right"/>
+    <trimBars xmi:id="_Ig2AsEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.trim.vertical1" toBeRendered="false" side="Left">
+      <children xsi:type="menu:ToolControl" xmi:id="_CQG8UFw8EeWiXvxmeyKmQA" elementId="PartStack@7e76b2bd(test.rcp.perspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+        <tags>TrimStack</tags>
+      </children>
+    </trimBars>
+    <trimBars xmi:id="_Ig5rEEGvEeSuZN0PotMrOQ" elementId="org.eclipse.ui.trim.vertical2" toBeRendered="false" side="Right">
+      <children xsi:type="menu:ToolControl" xmi:id="_CQxDoFw8EeWiXvxmeyKmQA" elementId="org.eclipse.ui.views.PropertySheetMStack(test.rcp.perspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+        <tags>TrimStack</tags>
+      </children>
+    </trimBars>
   </children>
   <bindingTables xmi:id="_INK2wUGvEeSuZN0PotMrOQ" contributorURI="platform:/plugin/VisualProgrammingLanguage" bindingContext="_INK2wkGvEeSuZN0PotMrOQ">
     <bindings xmi:id="_IQuhEUGvEeSuZN0PotMrOQ" keySequence="CTRL+INSERT" command="_IO0clEGvEeSuZN0PotMrOQ"/>

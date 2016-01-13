@@ -54,7 +54,7 @@ void PID(int *base, int *value, double Kp, double Ki, double Kd, int avgSpeed,in
 
 	pPart = (Kp+Ki+Kd) * error;
 	iPart = -(Kp+2*Kd) * pre_error;
-	dPart = Ki * prepre_error;
+	dPart = Kd * prepre_error;
 	pidResult += pPart + iPart + dPart;
 
 	if (pidResult > 80)

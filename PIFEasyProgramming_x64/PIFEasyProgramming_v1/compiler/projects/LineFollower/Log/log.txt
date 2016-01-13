@@ -1,0 +1,44 @@
+Wed Sep 16 09:56:31 2015:	* -----/|-------------------------------------------------------------------- *
+Wed Sep 16 09:56:31 2015:	*     / |__                                                                   *
+Wed Sep 16 09:56:31 2015:	*    /_   /   MSP430 Flasher v1.3.2                                           *
+Wed Sep 16 09:56:31 2015:	*      | /                                                                    *
+Wed Sep 16 09:56:31 2015:	* -----|/-------------------------------------------------------------------- *
+Wed Sep 16 09:56:31 2015:	* Evaluating triggers...done
+Wed Sep 16 09:56:31 2015:	* Checking for available FET debuggers: 
+Wed Sep 16 09:56:31 2015:	* Found USB FET @ HID0017:COM8.Wed Sep 16 09:56:31 2015:	 <- Selected
+Wed Sep 16 09:56:31 2015:	* Initializing interface @ HID0017:COM8...done
+Wed Sep 16 09:56:31 2015:	* Checking firmware compatibility: 
+Wed Sep 16 09:56:31 2015:	* FET firmware is up to date.
+Wed Sep 16 09:56:31 2015:	* Reading FW version...done
+Wed Sep 16 09:56:31 2015:	* Reading HW version...
+Wed Sep 16 09:56:31 2015:	* Debugger does not support target voltages other than 3000 mV!
+Wed Sep 16 09:56:31 2015:	* Setting VCC to 3000 mV...done
+Wed Sep 16 09:56:31 2015:	* Accessing device...done
+Wed Sep 16 09:56:31 2015:	* Reading device information...done
+Wed Sep 16 09:56:31 2015:	* Loading file into device...done
+Wed Sep 16 09:56:33 2015:	* Verifying transfer...done
+Wed Sep 16 09:56:34 2015:	* 
+Wed Sep 16 09:56:34 2015:	* ----------------------------------------------------------------------------
+Wed Sep 16 09:56:34 2015:	* Arguments   : -n MSP430G2xx3 -w msp430g2553.hex -v -z [VCC] 
+Wed Sep 16 09:56:34 2015:	* Warning: Some default options were used due to incomplete argument list.
+Wed Sep 16 09:56:34 2015:	* ----------------------------------------------------------------------------
+Wed Sep 16 09:56:34 2015:	* Driver      : loaded
+Wed Sep 16 09:56:34 2015:	* Dll Version : 20409001
+Wed Sep 16 09:56:34 2015:	* FwVersion   : 30394216
+Wed Sep 16 09:56:34 2015:	* Interface   : TIUSB
+Wed Sep 16 09:56:34 2015:	* HwVersion   : E 2.0
+Wed Sep 16 09:56:34 2015:	* JTAG Mode   : AUTO
+Wed Sep 16 09:56:34 2015:	* Device      : MSP430G2xx3
+Wed Sep 16 09:56:34 2015:	* EEM         : Level 1, ClockCntrl 1
+Wed Sep 16 09:56:34 2015:	* Prog.File   : msp430g2553.hex (ERASE_ALL, verified = TRUE)
+Wed Sep 16 09:56:34 2015:	* BSL Unlock  : FALSE
+Wed Sep 16 09:56:34 2015:	* InfoA Access: FALSE
+Wed Sep 16 09:56:34 2015:	* VCC ON      : 3000 mV
+Wed Sep 16 09:56:34 2015:	* ----------------------------------------------------------------------------
+Wed Sep 16 09:56:34 2015:	* Starting target code execution...done
+Wed Sep 16 09:56:34 2015:	* Disconnecting from device...done
+Wed Sep 16 09:56:34 2015:	* 
+Wed Sep 16 09:56:34 2015:	* ----------------------------------------------------------------------------
+Wed Sep 16 09:56:34 2015:	* Driver      : closed (No error)
+Wed Sep 16 09:56:34 2015:	* ----------------------------------------------------------------------------
+Wed Sep 16 09:56:34 2015:	*/
