@@ -31,7 +31,7 @@ void main()
 	{
 		while(!(ADC10CTL0 & ADC10IFG));
 		ADC10CTL0 &= ~ADC10IFG;
-		PID(Base,Value,1.0,0.01,0.0,50,&Left,&Right);
+		PID(Base,Value,4.3,0.2,0.3,35,&Right,&Left);
 		SetPWM(Left,Right);
 	}
 }
